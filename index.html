@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>L.S 2.0</title>
+<meta name="description" content="L.S 2.0 — profile, interests, and life.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap">
+    <div class="nav-brand"><span class="prompt">~$</span> lordscientia</div>
+    <div class="nav-links">
+      <a href="index.html" class="active">home</a>
+      <a href="interests.html">interests</a>
+      <a href="gallery.html">gallery</a>
+      <a href="journal/index.html">journal</a>
+      <a href="work.html">work</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero bg-atmo bg-lightning">
+  <div class="wrap">
+    <div class="terminal">
+      <div class="terminal-bar">
+        <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+        <span class="terminal-title">whoami</span>
+      </div>
+      <div class="terminal-body" id="scan-output">
+        <p class="line prompt-line"><span class="prompt">$</span> whoami<span class="cursor" id="cursor"></span></p>
+      </div>
+    </div>
+    <p class="hero-sub">
+      <!-- EDIT ME: your own words about who you are, beyond the job title. -->
+      I'm L.S 2.0. This is my personal space — a bit of who I am, what I'm into,
+      what I'm building, and what's going on in life right now.
+    </p>
+  </div>
+</header>
+
+<section id="about">
+  <div class="wrap">
+    <h2 class="section-title">About</h2>
+    <!-- EDIT ME: write your real bio here. Keep it short, keep it you. -->
+    <p style="color:var(--text-dim); max-width:62ch;">
+      Based in Ghana. I build things — mostly software, sometimes just ideas I'm
+      turning over. Outside of that: [add what you actually spend your time on —
+      games, football, people, places, whatever's true]. This page will grow as
+      the site does.
+    </p>
+  </div>
+</section>
+
+<section id="quicklinks" class="bg-atmo bg-fracture">
+  <div class="wrap">
+    <h2 class="section-title">Around the site</h2>
+    <div class="card-grid">
+      <div class="card">
+        <h3>Interests</h3>
+        <p>What I'm into — games, ideas, aesthetics, the stuff that isn't work.</p>
+        <div class="card-links"><a href="interests.html">Take a look →</a></div>
+      </div>
+      <div class="card">
+        <h3>Journal</h3>
+        <p>Life updates and notes, whenever there's something worth writing down.</p>
+        <div class="card-links"><a href="journal/index.html">Read the journal →</a></div>
+      </div>
+      <div class="card">
+        <h3>Gallery</h3>
+        <p>A visual mood board — things that caught my eye.</p>
+        <div class="card-links"><a href="gallery.html">Open gallery →</a></div>
+      </div>
+      <div class="card">
+        <h3>Work</h3>
+        <p>The dev side, briefly — Sentinel and a couple of other builds.</p>
+        <div class="card-links"><a href="work.html">See the work →</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap" style="display:flex; justify-content:space-between; width:100%;">
+    <span>© 2026 L.S 2.0</span>
+    <span>static HTML — no framework, no tracking</span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var lines = [
+    { text: "L.S 2.0", cls: "ok" },
+    { text: "based in: Ghana", cls: "info" },
+    { text: "currently: building, writing, figuring it out", cls: "info" },
+    { text: "status: online", cls: "ok" }
+  ];
+  var output = document.getElementById("scan-output");
+  var cursorHolder = document.getElementById("cursor");
+  var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  function appendLine(i) {
+    if (i >= lines.length) return;
+    var p = document.createElement("p");
+    p.className = "line " + lines[i].cls;
+    p.textContent = lines[i].text;
+    output.insertBefore(p, cursorHolder.parentElement.nextSibling);
+    output.appendChild(cursorHolder.parentElement);
+    setTimeout(function () { appendLine(i + 1); }, reduceMotion ? 0 : 320);
+  }
+  setTimeout(function () { appendLine(0); }, reduceMotion ? 0 : 400);
+})();
+</script>
+
+</body>
+</html>
